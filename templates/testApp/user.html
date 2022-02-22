@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{%extends 'testApp/base.html'%}
+{%block body_block%}
+<div class="jumbotron" align='center'>
+  <h1>Register a new case for the missing person here</h1>
+  <h2>Kindly provide all details correctly for future references</h2>
+</div>
+
+
+<div class="container ">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <a href="/" class='btn btn-dark my-3'>Home</a>
+      <div class="card">
+
+
+        <form method='POST' action='' enctype='multipart/form-data'>
+          {%csrf_token%}
+          <div class="form-group m-3">
+            <label >Name</label>
+            <input name='name' required type="text" class='form-control'>
+
+          <label >Age</label>
+          <input name='age' type="text" class='form-control'>
+
+        <label >Gender</label>
+        <select name='gender' required  class='form-control'>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer Not to say</option>
+        </select>
+        
+
+          <label >Upload Image</label>
+          <input required name='images' type="file" multiple class='form-control-file' filename='{{username}}'>
+
+
+        </div>
+      </div>
+        <button type="submit" class='btn btn-primary m-3'>Submit</button>
+        <button onclick="location.href='/cases'" type="button">
+         View already registered Cases</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<h1>Upload multiple images for  higher chances of finding the person</h1>
+{%endblock%}

@@ -1,0 +1,152 @@
+  <!DOCTYPE html>
+{%extends 'testApp/base.html'%}
+{%block head_block%}
+<meta charset="utf-8" />
+    <title>Home</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background: #e6e6e6;
+        }
+        .showSlide {
+            display: none
+        }
+            .showSlide img {
+                width: 1000px;
+                height:500px;
+            }
+        .slidercontainer {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        .left, .right {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .right {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+            .left:hover, .right:hover {
+                background-color: rgba(115, 115, 115, 0.8);
+            }
+        .content {
+            color: #eff5d4;
+            font-size: 30px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .active {
+            background-color: #717171;
+        }
+
+        .fade {
+                    -webkit-animation-name: fade;
+                    -webkit-animation-duration: .5s;
+                    animation-name: fade;
+                    animation-duration: 1.5s;
+                }
+
+        @-webkit-keyframes fade {
+                    from {
+                        opacity: .4
+                    }
+                    to {
+                        opacity: 1
+                    }
+                }
+
+                @keyframes fade {
+                    from {
+                        opacity: .4
+                    }
+                    to {
+                        opacity: 1
+                    }}
+
+
+    </style>
+{%endblock%}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/demo.css"%}">
+{%block body_block%}
+<div class="jumbotron" align='center'>
+  <h1>Missing person finder</h1>
+  <h2>Signup and login to register a new case or view existing case</h2>
+  <!--- <h3>Click here to view already existing case</h3> --->
+  <!---<a href="/cases">View cases</a> --->
+</div>
+
+<div class="slidercontainer">
+        <div class="showSlide ">
+            <img src="{% static "images/download (1).jpg"  %}" />
+            <div class="content">First Image</div>
+        </div>
+        <div class="showSlide ">
+            <img src="{% static "images/blank.png"  %}" />
+            <div class="content">Blank</div>
+        </div>
+
+        <div class="showSlide ">
+            <img src="{% static "images/TC3Baner3.jpg"  %}" />
+            <div class="content">Third Image</div>
+        </div>
+        <div class="showSlide ">
+            <img src="{% static "images/blank.png"  %}" />
+            <div class="content">Slide4 heading</div>
+        </div>
+        <!-- Navigation arrows -->
+        <a class="left" onclick="nextSlide(-1)">❮</a>
+        <a class="right" onclick="nextSlide(1)">❯</a>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Help Line Numbers</h5>
+          <p class="card-text">Number:- +91 9169490000</p>
+          <p class="card-text">Mail info@missingpersonhelpline.org</p>
+          <p class="card-text">Offical Website www.missingpersonhelpline.org</p>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        var slide_index = 1;
+        displaySlides(slide_index);
+
+        function nextSlide(n) {
+            displaySlides(slide_index += n);
+        }
+
+        function currentSlide(n) {
+            displaySlides(slide_index = n);
+        }
+
+        function displaySlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("showSlide");
+            if (n > slides.length) { slide_index = 1 }
+            if (n < 1) { slide_index = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slide_index - 1].style.display = "block";
+        }
+    </script>
+
+{{name}}
+{%endblock%}

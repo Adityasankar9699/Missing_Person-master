@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{%extends 'testApp/base.html'%}
+{%load static%}
+{%block body_block%}
+
+<div class="container p-4 text-center" style="max-width: 600px;">
+
+
+
+
+        <div class="card-body m-5">
+            <h1 class="card-title" style='color:#191970'>Login</h1>
+
+            <form  method="post" class="card-text mb-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <input class="gradient-button login" type="submit" value="Login">
+            </form>
+
+          <h1 style='color:#191970'>Dont have an account</h1>   <a href="/signup"><strong style='color:red'>Register here</strong></a>
+    </div>
+<h1 style='color:#191970'><a href="/">Home page</a></h1>
+</div>
+</div>
+
+    {% for error in form.username.errors %}
+         <p style="font-family:courier;" >{{ error }}</p>
+    {% endfor %}
+    {% if form.non_field_errors %}
+          {% for error in form.non_field_errors %}
+              <p style="font-family:courier; color:black;">{{ error }}</p>
+          {% endfor %}
+    {% endif %}
+
+{% endblock %}

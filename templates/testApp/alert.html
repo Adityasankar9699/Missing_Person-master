@@ -1,0 +1,23 @@
+{%extends 'testApp/base.html'%}
+{%block body_block%}
+{%for case in cases%}
+<div class="card" style="width: 18rem;">
+<h1>Person has been found</h1>
+<div class="card-body">
+  <div class="card-header">
+  Case Number {{case.id}}
+</div>
+  <h5 class="card-title">Missing person name:- {{case.name}}</h5>
+  <p class="card-text">Age:- {{case.age}}</p>
+  <p class="card-text">Gender:- {{case.gender}}</p>
+  <p class="card-text">Image Uploaded:-</p>
+  
+  <img src="{{case.image.url}}"  width='200' height='200' alt="">
+  <p class="card-text">Case registered by:- {{case.user}}</p>
+  <a href="/" class="btn btn-primary">Home page</a>
+</div>
+</div>
+
+{%endfor%}
+{{message}}
+{%endblock%}
