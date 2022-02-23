@@ -176,8 +176,10 @@ def FC(request):
                     #read file
                     #compar file with namesif  yes
                     #if no to write name
-
-                face_names.append(name)
+                filenm=os.path.basename(name)
+                # print(filen)
+                names=os.path.splitext(filenm)[0]
+                face_names.append(names)
         process_this_frame = not process_this_frame
         global fac_nam
         fac_nam=face_names
@@ -195,8 +197,8 @@ def FC(request):
         print(get_list)
         if not set(face_names).issubset(get_list):
             message='{} has been found'.format(face_names)
-            send_mail('Subject here', message, 'sumitsankar9@gmail.com',
-    ['sharat123dewas@gmail.com'], fail_silently=False)
+            send_mail('Subject here', message, 'from email',
+    ['to email'], fail_silently=False)
             face_names.extend(get_list)
             with open('name_list.txt','wb') as f:
                 pickle.dump(face_names,f)
